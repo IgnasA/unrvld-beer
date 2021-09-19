@@ -1,20 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { StyledGridItem, StyledList } from './Grid.style';
 
-const GridItem = ({ abv, description }) => {
+const GridItem = ({ name, abv, image_url, ibu, food_pairing }) => {
     return (
-        <div>
-                <p>{description}</p>
-                <p>ABV: {abv}</p>
-        </div>
+        <StyledGridItem image_url={image_url}>
+            <p><b>{name}🍺</b> ({abv}‰ IBU {ibu})</p>
+            <div>
+                <p>Try it with:</p>
+                <StyledList>
+                 {food_pairing.map((item, i) => (<li key={i}>{item}</li>))}
+                </StyledList>
+            </div>
+        </StyledGridItem>
     );
 };
 
 GridItem.propTypes = {
     name: PropTypes.string,
-    id: PropTypes.number,
+    ibu: PropTypes.number,
     abv: PropTypes.number,
-    description: PropTypes.string,
+    food_pairing: PropTypes.array,
+    image_url: PropTypes.string,
 };
   
 export default GridItem; 

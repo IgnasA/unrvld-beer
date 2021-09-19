@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Accordion from './components/Accordion';
-import Grid from './components/Grid';
+import Accordion from './components/Accordion/Accordion';
+import Grid from './components/Grid/Grid';
 const App = () => {
-  const [data, setData] = useState({ hits: [] });
+  const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState([]);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const App = () => {
           isLoading={isLoading}
         />
 
-        <h1>CTA Grid</h1>
+        <h1>Grid</h1>
         <Grid
           data={data}
           isLoading={isLoading}
