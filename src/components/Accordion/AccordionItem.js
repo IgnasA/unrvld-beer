@@ -1,30 +1,34 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, ExpandedPart, Arrow } from './Accordion.style';
+import { Button, ExpandablePart, Arrow, AccordionItemWrapper } from './Accordion.style';
 
-const AccordionItem = ({ name, id, abv, description }) => {
+const AccordionItem = ({ name, id, abv, description, tagline }) => {
     const [selected, setSelected] = useState(false);
-    const toggle = id => setSelected(selected === id ? null : id);
+    const toggle = id => {
+      setSelected(selected === id ? null : id);
+    }
     
     return (
-        <div>
-            <Button onClick={() => toggle(id)}>
+        <AccordionItemWrapper>
+            <Button onClick={() => toggle(id)} selected={selected}>
                 <span>{name}</span>
-                <Arrow selected={selected}/>
+                <Arrow selected={selected} />
             </Button>
             {selected === id && (
-              <ExpandedPart selected={selected}>
+              <ExpandablePart>
+                <p>{tagline}</p>
                 <p>{description}</p>
                 <p>ABV: {abv}</p>
-              </ExpandedPart>   
+              </ExpandablePart>   
                 )
             }  
-        </div>
+        </AccordionItemWrapper>
     );
 };
 
 AccordionItem.propTypes = {
     name: PropTypes.string,
+    tagline: PropTypes.string,
     id: PropTypes.number,
     abv: PropTypes.number,
     description: PropTypes.string,
